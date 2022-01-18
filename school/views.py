@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from school.models import Student, Course
-from serializer import StudentSerializer, CourseSerializer
+from school.serializer import StudentSerializer, CourseSerializer
 
 class StudentsViewSet(viewsets.ModelViewSet):
     """Showing all students"""
