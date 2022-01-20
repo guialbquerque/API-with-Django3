@@ -1,6 +1,6 @@
 from re import search
 from django.contrib import admin
-from school.models import Student, Course
+from school.models import Student, Course, Registration
 
 class Students(admin.ModelAdmin):
 
@@ -18,4 +18,11 @@ class Courses(admin.ModelAdmin):
     search_fields = ('code_course',)
 
 admin.site.register(Course, Courses)
+
+class Registrations(admin.ModelAdmin):
+
+    list_display = ('id', 'student', 'course')
+    list_display_links = ('id')
+
+admin.site.register(Registration, Registrations)
 
