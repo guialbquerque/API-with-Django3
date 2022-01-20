@@ -21,8 +21,19 @@ class Course(models.Model):
 
     code_course = models.CharField(max_length = 10)
     description = models.CharField(max_length = 100)
-    level = models.CharField(max_length = 1, choices = LEVEL, blank = False, null = FALSE, default = 'B')
+    level = models.CharField(max_length = 1, choices = LEVEL, blank = False, null = False, default = 'B')
 
     def __str__(self):
         return self.description
 
+class Registration(models.Model):
+
+    TIME_COURSE = [
+        ('M', 'Morning'),
+        ('A', 'Afternonn'),
+        ('N', 'Nocturne')
+    ]
+
+    student = models.ForeignKey(Student, on_delete = models.CASCADE)
+    course = models.ForeignKey(Course, on_delete= models.CASCADE)
+    time_course = models.CharField(max_length = 1, choices = TIME_COURSE, blank = False, null = False, default = 'M')
