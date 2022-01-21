@@ -29,3 +29,10 @@ class ListRegistrationStudentSerializer(serializers.ModelSerializer):
     
     def get_time_course(self, obj):
         return obj.get_time_course_display()
+
+class ListStudentsRegistredSerializer(serializers.ModelSerializer):
+    student_name = serializers.ReadOnlyField(source = 'student.name')
+    class Meta:
+        model = Registration
+        fiels = ['student_name']
+        
