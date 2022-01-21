@@ -1,6 +1,6 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from school.models import Registration, Student, Course
-from school.serializer import StudentSerializer, CourseSerializer, RegistrationSerializer
+from school.serializer import StudentSerializer, CourseSerializer, RegistrationSerializer, ListRegistrationStudentSerializer
 
 class StudentsViewSet(viewsets.ModelViewSet):
     """Showing all students"""
@@ -17,3 +17,9 @@ class RegistrationsViewSet(viewsets.ModelViewSet):
     queryset = Registration.objects.all()
     serializer_class = RegistrationSerializer
 
+class ListRegistrationsStudent(generics.ListAPIView):
+    """Listing all the registrations of the student"""
+    def get_queryset(self):
+        queryset = Registration.objects.filter(student_id = self.kwargs['pk'])
+        return queryset
+    serializer_class = ListRegistrationStudentSerializer
