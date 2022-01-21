@@ -1,3 +1,4 @@
+from re import M
 from rest_framework import serializers
 from school.models import Student, Course, Registration
 
@@ -19,6 +20,12 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
 
 class ListRegistrationStudentSerializer(serializers.ModelSerializer):
+    course = serializers.ReadOnlyField(source = 'course.description')
+    time_course = serializers.SerializerMethodField()
+
     class Meta:
         model = Registration
         fields = ['course', 'time_course']
+    
+    def get_time_course(self, obj):
+        return obj.get_time_course_display()
