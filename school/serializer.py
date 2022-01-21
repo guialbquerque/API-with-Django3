@@ -34,4 +34,4 @@ class ListStudentsRegisteredSerializer(serializers.ModelSerializer):
     student_name = serializers.ReadOnlyField(source = 'student.name')
     class Meta:
         model = Registration
-        fiels = ['student_name']
+        fields = ['student_name']
